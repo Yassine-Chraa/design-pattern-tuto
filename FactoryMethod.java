@@ -1,3 +1,17 @@
+public class FactoryMethod {
+    public static void main(String[] args) {
+        ShapeFactory shapeFactory = new ShapeFactory();
+
+        // Circle instance
+        Shape circle = shapeFactory.createShape("CIRCLE");
+        circle.draw();
+
+        // Square instance
+        Shape square = shapeFactory.createShape("SQUARE");
+        square.draw();
+    }
+}
+
 // Interface Product
 public interface Shape {
     void draw();
@@ -20,12 +34,12 @@ public class Square implements Shape {
 }
 
 // Factory Inteface
-public interface Shape {
+public interface Factory {
     Shape createShape(String shapeType);
 }
 
 // Factory
-public class ShapeFactory {
+public class ShapeFactory implements Factory {
 
     // Factory Method
     @Override
@@ -38,20 +52,5 @@ public class ShapeFactory {
             default:
                 return null;
         }
-    }
-}
-
-
-public class FactoryMethod {
-    public static void main(String[] args) {
-        ShapeFactory shapeFactory = new ShapeFactory();
-
-        // Circle instance
-        Shape circle = shapeFactory.createShape("CIRCLE");
-        circle.draw();
-
-        // Square instance
-        Shape square = shapeFactory.createShape("SQUARE");
-        square.draw();
     }
 }
