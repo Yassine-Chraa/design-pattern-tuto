@@ -1,42 +1,57 @@
-// 1. Product Interface
-interface Product {
-    void create();
+// Interface Product
+public interface Shape {
+    void draw();
 }
 
-// 2. Concrete Products
-class ConcreteProductA implements Product {
+// ProductA
+public class Circle implements Shape {
     @Override
-    public void create() {
-        // Implementation specific to ConcreteProductA
+    public void draw() {
+        System.out.println("Circle");
     }
 }
 
-class ConcreteProductB implements Product {
+// ProductB
+public class Square implements Shape {
     @Override
-    public void create() {
-        // Implementation specific to ConcreteProductB
+    public void draw() {
+        System.out.println("Square");
     }
 }
 
-// 3. Creator Interface
-interface Creator {
-    Product factoryMethod();
-    // Additional methods can be added here
+// Factory Inteface
+public interface Shape {
+    Shape createShape(String shapeType);
 }
 
-// 4. Concrete Creators
-class ConcreteCreatorA implements Creator {
+// Factory
+public class ShapeFactory {
+
+    // Factory Method
     @Override
-    public Product factoryMethod() {
-        return new ConcreteProductA();
+    public Shape createShape(String shapeType) {
+        switch(shapeType){
+            case "CIRCLE":
+                return new Circle();
+            case "SQUARE":
+                return new Square();
+            default:
+                return null;
+        }
     }
-    // Additional methods can be implemented here
 }
 
-class ConcreteCreatorB implements Creator {
-    @Override
-    public Product factoryMethod() {
-        return new ConcreteProductB();
+
+public class FactoryMethod {
+    public static void main(String[] args) {
+        ShapeFactory shapeFactory = new ShapeFactory();
+
+        // Circle instance
+        Shape circle = shapeFactory.createShape("CIRCLE");
+        circle.draw();
+
+        // Square instance
+        Shape square = shapeFactory.createShape("SQUARE");
+        square.draw();
     }
-    // Additional methods can be implemented here
 }
